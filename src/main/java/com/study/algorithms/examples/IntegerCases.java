@@ -3,7 +3,7 @@ package com.study.algorithms.examples;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class IntCases {
+public class IntegerCases {
 
     public int[] missingNumbers(int[] values, int count) {
         String missingValues = "";
