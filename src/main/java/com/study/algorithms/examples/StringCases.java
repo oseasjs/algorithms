@@ -1,9 +1,6 @@
 package com.study.algorithms.examples;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 // Inspired on:
@@ -182,10 +179,116 @@ public class StringCases {
 
     }
 
-    public String stringReduction(String value) {
+    public String reductionReplacingABC(String value) {
 
+        String abc = "abc";
 
-        return null;
+        if (value.length() >= 2) {
+
+            String lastVal = null;
+            String finalValue = "";
+            for (int i = 0; i < value.length(); i++) {
+
+                String currentVal = value.substring(i, i+1);
+                finalValue += currentVal;
+                if (lastVal == null) {
+                    lastVal = currentVal;
+                }
+                else {
+
+                    if (!lastVal.equalsIgnoreCase(currentVal)) {
+
+                        String missingVal = abc
+                                .replaceAll(lastVal, "")
+                                .replaceAll(currentVal, "");
+
+                        finalValue = value.replaceFirst(lastVal.concat(currentVal), missingVal);
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            if (finalValue.equalsIgnoreCase(value)) {
+                return finalValue;
+            }
+            else {
+                return reductionReplacingABC(finalValue);
+            }
+
+        }
+        else {
+            return value;
+        }
+
+    }
+
+    public String reductionReplacingABCOptimized(String value) {
+
+        String abc = "abc";
+
+        String nonDuplicatedVal = value
+            .chars()
+            .mapToObj(v -> (char) v)
+            .map(String::valueOf)
+            .filter(v -> v.lastIndexOf(v) == v.indexOf(v))
+            .collect(Collectors.joining());
+
+        if (nonDuplicatedVal.length() == 1) {
+            return value;
+        }
+        else {
+
+            String firstChar = nonDuplicatedVal.substring(0, 1);
+            String secondChar = nonDuplicatedVal.substring(1, 2);
+
+            String missingVal = abc.replaceAll(firstChar, "").replaceAll(secondChar, "");
+
+            return missingVal.length() > 1 ?
+                value :
+                reductionReplacingABC(value.replaceFirst(firstChar.concat(secondChar),missingVal));
+
+        }
+
+    }
+
+    public String fibonacci(int iteractions) {
+
+        List<Integer> list = new ArrayList<>();
+        int valueA = 1;
+        int valueB = 0;
+
+        for (int i = 0; i < iteractions; i++) {
+
+            int currentVal = valueA + valueB;
+            list.add(currentVal);
+            valueB = valueA;
+            valueA = currentVal;
+
+        }
+
+        return list
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(";"));
+
+    }
+
+    public String fibonacciOptimized(int iteractions) {
+
+        Integer[] values = new Integer[iteractions];
+        int valueA = 1;
+        int valueB = 0;
+        for (int i = 0; i < values.length; i++) {
+            values[i] = valueA + valueB;
+            valueB = valueA;
+            valueA = values[i];
+        }
+
+        return Arrays.stream(values).map(String::valueOf).collect(Collectors.joining(";"));
+
     }
 
 }

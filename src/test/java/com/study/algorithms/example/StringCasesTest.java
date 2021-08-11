@@ -139,4 +139,40 @@ public class StringCasesTest {
         Assert.assertEquals("dfcba", values[1]);
     }
 
+    @Test
+    public void reductionReplaceABCSucessfull() {
+
+        Assert.assertEquals("bb", stringCases.reductionReplacingABC("cab"));
+        Assert.assertEquals("b", stringCases.reductionReplacingABC("bcab"));
+        Assert.assertEquals("ccccc", stringCases.reductionReplacingABC("ccccc"));
+
+    }
+
+    @Test
+    public void reductionReplaceABCOptimizedSucessfull() {
+
+        Assert.assertEquals("bb", stringCases.reductionReplacingABCOptimized("cab"));
+        Assert.assertEquals("b", stringCases.reductionReplacingABCOptimized("bcab"));
+        Assert.assertEquals("ccccc", stringCases.reductionReplacingABCOptimized("ccccc"));
+
+    }
+
+    @Test
+    public void fibonacciSucessfull() {
+
+        Assert.assertEquals("1;2;3", stringCases.fibonacci(3));
+        Assert.assertEquals("1;2;3;5;8;13", stringCases.fibonacci(6));
+        Assert.assertEquals("1;2;3;5;8;13;21;34;55", stringCases.fibonacci(9));
+
+    }
+
+    @Test
+    public void fibonacciOptimizedSucessfull() {
+
+        Assert.assertEquals("1;2;3", stringCases.fibonacciOptimized(3));
+        Assert.assertEquals("1;2;3;5;8;13", stringCases.fibonacciOptimized(6));
+        Assert.assertEquals("1;2;3;5;8;13;21;34;55", stringCases.fibonacciOptimized(9));
+
+    }
+
 }
