@@ -33,6 +33,16 @@ public class EmployeeCasesTest {
     ).collect(Collectors.toList());
 
     @Test
+    public void highestSalarySuccessfully() {
+        Assert.assertEquals(Optional.of(mary), employeeCases.highestSalary(employeeList));
+    }
+
+    @Test
+    public void lowestSalarySuccessfully() {
+        Assert.assertEquals(carl, employeeCases.lowestSalary(employeeList));
+    }
+
+    @Test
     public void highestSalaryByDepartamentSuccessfully() {
         Map<String, Optional<Employee>> highestSalaryByDepartamentMap = new HashMap<>();
         highestSalaryByDepartamentMap.put(IT_DEPARTAMENT, Optional.of(mary));
