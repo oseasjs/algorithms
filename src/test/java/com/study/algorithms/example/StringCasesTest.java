@@ -4,6 +4,10 @@ import com.study.algorithms.examples.StringCases;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class StringCasesTest {
 
     private final StringCases stringCases = new StringCases();
@@ -173,6 +177,25 @@ public class StringCasesTest {
         Assert.assertEquals("1;2;3;5;8;13", stringCases.fibonacciOptimized(6));
         Assert.assertEquals("1;2;3;5;8;13;21;34;55", stringCases.fibonacciOptimized(9));
 
+    }
+
+    @Test
+    public void frequencyOfEachCharacterSuccessful() {
+        String value = "mytest";
+
+        Map<String, Long> expected = Stream.of(new Object[][]{
+            {"m", 1l},
+            {"y", 1l},
+            {"t", 2l},
+            {"e", 1l},
+            {"s", 1l},
+        }).collect(
+            Collectors.toMap(
+                data -> (String) data[0], data -> (Long) data[1]
+            )
+        );
+
+        Assert.assertEquals(expected, stringCases.frequenceOfEachCharacter(value));
     }
 
 }

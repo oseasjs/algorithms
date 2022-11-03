@@ -1,6 +1,7 @@
 package com.study.algorithms.examples;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 // Inspired on:
@@ -289,6 +290,17 @@ public class StringCases {
 
         return Arrays.stream(values).map(String::valueOf).collect(Collectors.joining(";"));
 
+    }
+
+    public Map<String, Long> frequenceOfEachCharacter(String value) {
+
+        return Arrays.stream(value.split(""))
+            .collect(
+                Collectors.groupingBy(
+                    Function.identity(),
+                    Collectors.counting()
+                )
+            );
     }
 
 }
